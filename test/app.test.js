@@ -9,3 +9,41 @@ describe('Express App', () => {
             .expect(200, 'Hello Express!');
     });
 });
+describe('GET /sum', () => {
+    it('8/4 should be 2', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({a: 8, b: 4})
+        .expect(200, '8 divided by 4 is 2');
+    });
+    it('should return 400 if a is missing', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({b: 4})
+        .expect(400, 'Value for a is needed');
+    });
+    it('should return 400 if b is missing', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({a: 4})
+        .expect(400, 'Value for b is needed');
+    });
+    it('should return 400 if a is NaN', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({a: 't', b: 9})
+        .expect(400, 'Value for a must be numeric');
+    });
+    it('should return 400 if b is NaN', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({a: 5, b: 'p'})
+        .expect(400, 'Value for b must be numeric');
+    });
+    it('should return 400 if b is 0', () => {
+        return supertest(app)
+        .get('/sum')
+        .query({a: 9, b: 0})
+        .expect(400, 'Cannot divide by 0');
+    });
+});
