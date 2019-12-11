@@ -1,0 +1,24 @@
+{
+  "name": "express_testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "App.js",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "express": "^4.17.1",
+    "mocha": "^6.2.2",
+    "morgan": "^1.9.1",
+    "supertest": "^4.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
